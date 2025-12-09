@@ -1,241 +1,539 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Hoàng Kiên & Minh Khánh | Wedding</title>
-    
+    <title>Hoàng Kiên & Minh Khánh | Wedding Celebration</title>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400;1,500&family=Montserrat:wght@200;300;400;500&display=swap" rel="stylesheet">
-    
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400;1,500&family=Montserrat:wght@200;300;400;500&display=swap"
+        rel="stylesheet">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
+        /* 1. CẤU HÌNH GIAO DIỆN */
         :root {
-            /* Palette Luxury */
             --bg-color: #fcfbf9;
             --text-color: #2b2b2b;
-            --accent-color: #1a4031; /* Xanh Emerald */
-            --gold-color: #bd9b60;   /* Vàng Champagne */
-            
+            --accent-color: #1a4031;
+            --gold-color: #bd9b60;
             --font-main: 'Cormorant Garamond', serif;
             --font-sans: 'Montserrat', sans-serif;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; }
-        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             background-color: var(--bg-color);
             color: var(--text-color);
             font-family: var(--font-main);
             overflow-x: hidden;
-            font-size: 16px; /* Chuẩn size mobile */
-            -webkit-font-smoothing: antialiased; /* Mượt chữ trên iOS */
+            font-size: 18px;
+            -webkit-font-smoothing: antialiased;
         }
 
-        /* --- BACKGROUND FIXED (Parallax mượt trên Mobile) --- */
+        /* 2. BACKGROUND (Dùng Cong1.jpg làm nền chính) */
         .fixed-bg {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
-            background: url('https://images.unsplash.com/photo-1606103920295-9a091573f160?q=80&w=1974&auto=format&fit=crop') no-repeat center center/cover;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            /* Update: Dùng ảnh Cong1.jpg */
+            background: url('img/nen.jpg') no-repeat center center/cover;
             z-index: -1;
             filter: brightness(0.85);
-            transform: scale(1.05); /* Zoom nhẹ */
-            will-change: transform; /* Tối ưu GPU */
+            will-change: transform;
         }
 
-        /* --- REVEAL ANIMATION --- */
-        .reveal { opacity: 0; transform: translateY(30px); transition: all 1s ease-out; }
-        .reveal.active { opacity: 1; transform: translateY(0); }
-
-        /* --- TYPOGRAPHY --- */
-        h1, h2, h3 { font-weight: 400; color: var(--accent-color); line-height: 1.1; }
-        p { font-family: var(--font-sans); font-weight: 300; line-height: 1.6; color: #555; font-size: 0.95rem; }
-        
-        .script-text {
-            font-style: italic; font-size: 1.5rem; color: var(--gold-color);
-            margin-bottom: 5px; font-family: var(--font-main);
-        }
-        .section-title {
-            font-size: 2.8rem; margin-bottom: 30px; text-align: center;
-            letter-spacing: -0.5px;
-        }
-
-        /* --- BUTTONS --- */
-        .btn-luxury {
-            display: inline-block; padding: 14px 40px;
-            border: 1px solid var(--accent-color); color: var(--accent-color);
-            font-family: var(--font-sans); text-transform: uppercase;
-            letter-spacing: 1.5px; font-size: 0.8rem; text-decoration: none;
-            transition: 0.3s; background: transparent; cursor: pointer;
-            border-radius: 50px; /* Bo tròn mềm mại hơn cho mobile */
-            font-weight: 500;
-        }
-        .btn-luxury:active { transform: scale(0.95); background: var(--accent-color); color: #fff; }
-
-        /* --- UTILS --- */
-        .section-padding { padding: 80px 0; background: var(--bg-color); }
-        .container { width: 90%; max-width: 1200px; margin: 0 auto; }
-        
-        /* --- HERO SECTION --- */
         .hero {
-            height: 100svh; /* svh: Small Viewport Height (Fix lỗi thanh địa chỉ che) */
-            width: 100%; display: flex; align-items: center; justify-content: center;
-            flex-direction: column; text-align: center; position: relative;
-        }
-        .hero-content {
-            z-index: 2; color: #fff; padding: 30px 20px;
-            /* Hiệu ứng kính mờ Gradient */
-            background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.6) 100%);
-            width: 100%; position: absolute; bottom: 0; padding-bottom: 80px;
-        }
-        .hero-names {
-            font-size: 3.8rem; margin: 10px 0; text-transform: capitalize;
-            color: #fff; text-shadow: 0 2px 10px rgba(0,0,0,0.3);
-            line-height: 1;
-        }
-        .hero-date {
-            font-family: var(--font-sans); font-size: 1.1rem; letter-spacing: 3px;
-            text-transform: uppercase; margin-top: 15px; color: rgba(255,255,255,0.9);
-            border-top: 1px solid rgba(255,255,255,0.5); display: inline-block; padding-top: 15px;
-        }
-        .scroll-down {
-            position: absolute; bottom: 20px; color: #fff; animation: bounce 2s infinite; z-index: 3;
-        }
-
-        /* --- COUPLE SECTION --- */
-        .couple-wrapper { display: flex; flex-direction: column; gap: 40px; }
-        .couple-img {
-            width: 100%; border-radius: 8px;
-            box-shadow: 15px 15px 0px rgba(26, 64, 49, 0.1);
-            aspect-ratio: 3/4; object-fit: cover;
-        }
-        .quote {
-            font-style: italic; font-size: 1.4rem; color: var(--gold-color);
-            margin-top: 20px; display: block; border-left: 3px solid var(--gold-color);
-            padding-left: 15px; text-align: left;
-        }
-
-        /* --- COUNTDOWN (Mobile Optimized: 2x2 Grid) --- */
-        .countdown-wrap {
-            background: var(--accent-color); color: white; padding: 60px 0; text-align: center;
-        }
-        .timer {
-            display: grid; grid-template-columns: 1fr 1fr; /* Lưới 2 cột */
-            gap: 20px; margin-top: 30px; max-width: 300px; margin-left: auto; margin-right: auto;
-        }
-        .timer-box {
-            background: rgba(255,255,255,0.05); padding: 15px; border-radius: 8px;
-            border: 1px solid rgba(255,255,255,0.1);
-        }
-        .timer-num { font-size: 2.5rem; line-height: 1; font-family: var(--font-main); }
-        .timer-label { font-size: 0.7rem; letter-spacing: 1px; text-transform: uppercase; opacity: 0.7; margin-top: 5px;}
-
-        /* --- EVENTS (Mobile Card Style) --- */
-        .event-card {
-            background: #fff; padding: 30px 20px; margin-bottom: 30px;
-            border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-            text-align: center; border: 1px solid #f0f0f0;
-        }
-        .event-title { font-size: 2rem; margin-bottom: 5px; color: var(--accent-color); }
-        .event-time { font-family: var(--font-sans); font-size: 0.9rem; font-weight: 600; color: var(--gold-color); margin-bottom: 15px; }
-        .event-loc { font-style: italic; margin-bottom: 15px; font-size: 1.1rem; color: #333; }
-
-        /* --- GALLERY (Mobile: Horizontal Scroll Snap) --- */
-        /* Đây là thiết kế "Instagram Story" cho mobile */
-        .gallery-container {
-            width: 100%; overflow-x: auto; 
-            display: flex; gap: 15px; padding-bottom: 20px;
-            scroll-snap-type: x mandatory; /* Bắt dính khi lướt */
-            -webkit-overflow-scrolling: touch; /* Mượt trên iOS */
-        }
-        .gallery-container::-webkit-scrollbar { display: none; } /* Ẩn thanh scroll */
-        .gallery-item {
-            min-width: 85vw; /* Chiều rộng ảnh chiếm 85% màn hình */
-            height: 60vh; /* Chiều cao ảnh */
-            scroll-snap-align: center;
-            border-radius: 8px; overflow: hidden;
+            height: 100vh;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            text-align: center;
             position: relative;
         }
+
+        .hero-content {
+            z-index: 2;
+            color: #fff;
+            padding: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            background: rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(5px);
+            max-width: 900px;
+            animation: fadeIn 2s ease;
+        }
+
+        .hero-names {
+            font-size: 6rem;
+            margin: 20px 0;
+            text-transform: capitalize;
+            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .hero-date {
+            font-family: var(--font-sans);
+            font-size: 1.3rem;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            border-top: 1px solid rgba(255, 255, 255, 0.8);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.8);
+            padding: 15px 0;
+            display: inline-block;
+            margin-top: 20px;
+            color: #fff;
+        }
+
+        /* 3. COMMON */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section-padding {
+            padding: 100px 0;
+            background: var(--bg-color);
+        }
+
+        .section-title {
+            font-size: 3.5rem;
+            margin-bottom: 40px;
+            text-align: center;
+            letter-spacing: -1px;
+        }
+
+        .script-text {
+            font-style: italic;
+            font-size: 1.8rem;
+            color: var(--gold-color);
+            margin-bottom: 10px;
+            font-family: var(--font-main);
+        }
+
+        .btn-luxury {
+            display: inline-block;
+            padding: 15px 40px;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            font-family: var(--font-sans);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.8rem;
+            text-decoration: none;
+            transition: 0.4s;
+            background: transparent;
+            cursor: pointer;
+            border-radius: 50px;
+            font-weight: 600;
+        }
+
+        .btn-luxury:hover {
+            background: var(--accent-color);
+            color: white;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 1s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* 4. SECTIONS */
+        .couple-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .couple-img {
+            width: 100%;
+            border-radius: 4px;
+            box-shadow: 20px 20px 0px rgba(26, 64, 49, 0.1);
+        }
+
+        .quote {
+            font-style: italic;
+            font-size: 1.5rem;
+            color: var(--gold-color);
+            margin-top: 20px;
+            display: block;
+            border-left: 3px solid var(--gold-color);
+            padding-left: 20px;
+        }
+
+        .events-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+
+        .event-card {
+            background: #fff;
+            padding: 40px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.03);
+            border: 1px solid #eee;
+            text-align: center;
+            border-radius: 8px;
+        }
+
+        .event-title {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+            color: var(--accent-color);
+        }
+
+        .event-time {
+            font-family: var(--font-sans);
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: var(--gold-color);
+        }
+
+        .event-loc {
+            font-style: italic;
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+
+        .countdown-wrap {
+            background: var(--accent-color);
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .timer {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            margin-top: 30px;
+        }
+
+        .timer-num {
+            font-size: 4rem;
+            line-height: 1;
+        }
+
+        .timer-label {
+            font-family: var(--font-sans);
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            opacity: 0.8;
+        }
+
+        /* 5. GALLERY (Auto Grid 4 cột để chứa đủ 10 ảnh đẹp hơn) */
+        .gallery-wrapper {
+            width: 100%;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+        }
+
+        /* Ảnh lớn nổi bật (Ban1 và Ban6) */
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            height: 350px;
+            border-radius: 4px;
+        }
+
+        .gallery-item.large {
+            grid-column: span 2;
+            grid-row: span 2;
+            height: 715px;
+        }
+
         .gallery-item img {
-            width: 100%; height: 100%; object-fit: cover;
-        }
-        .swipe-hint {
-            text-align: center; font-size: 0.8rem; color: #999; margin-top: 10px;
-            font-family: var(--font-sans); display: flex; align-items: center; justify-content: center; gap: 5px;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s ease;
+            filter: grayscale(20%);
         }
 
-        /* --- FOOTER --- */
-        footer { background: var(--text-color); color: #fff; text-align: center; padding: 50px 20px; }
-        .footer-names { font-size: 2rem; color: var(--gold-color); margin-bottom: 10px; }
-        
-        /* --- MUSIC BTN --- */
-        .music-control {
-            position: fixed; bottom: 20px; right: 20px;
-            width: 45px; height: 45px; background: rgba(255,255,255,0.9); 
-            color: var(--accent-color); border-radius: 50%; 
-            display: flex; align-items: center; justify-content: center;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2); z-index: 100;
-            backdrop-filter: blur(5px); border: 1px solid var(--accent-color);
+        .gallery-item:hover img {
+            transform: scale(1.1);
+            filter: grayscale(0%);
         }
-        .music-rotating { animation: spin 4s linear infinite; }
 
-        /* --- DESKTOP TWEAKS (Giữ đẹp cho PC nếu mở) --- */
-        @media (min-width: 769px) {
-            .hero-content { 
-                background: rgba(0,0,0,0.2); backdrop-filter: blur(5px);
-                border: 1px solid rgba(255,255,255,0.3);
-                bottom: auto; width: auto; padding: 50px; border-radius: 4px;
+        .mobile-hint {
+            display: none;
+        }
+
+        footer {
+            background: var(--text-color);
+            color: #fff;
+            text-align: center;
+            padding: 60px 0;
+        }
+
+        /* 6. MUSIC UI */
+        .music-control-container {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .music-btn {
+            width: 50px;
+            height: 50px;
+            background: var(--accent-color);
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            border: 2px solid var(--gold-color);
+            transition: all 0.3s ease;
+        }
+
+        .music-btn.playing {
+            animation: spin 4s linear infinite;
+            background: #fff;
+            color: var(--accent-color);
+        }
+
+        .music-info {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 8px 15px;
+            border-radius: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            transform: translateX(20px);
+            transition: all 0.5s ease;
+            pointer-events: none;
+            font-family: var(--font-sans);
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--accent-color);
+            white-space: nowrap;
+        }
+
+        .music-control-container.is-playing .music-info {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* 7. RESPONSIVE MOBILE */
+        @media (max-width: 768px) {
+            .section-padding {
+                padding: 60px 0;
             }
-            .hero-names { font-size: 6rem; }
-            .couple-wrapper { flex-direction: row; align-items: center; }
-            .couple-content, .couple-img-box { flex: 1; }
-            .timer { grid-template-columns: repeat(4, 1fr); max-width: 800px; }
-            .events-list { max-width: 800px; margin: 0 auto; }
-            /* Gallery Desktop chuyển về dạng lưới */
-            .gallery-container { display: grid; grid-template-columns: repeat(3, 1fr); overflow: visible; }
-            .gallery-item { min-width: auto; height: 400px; }
-            .swipe-hint { display: none; }
+
+            .section-title {
+                font-size: 2.5rem;
+                margin-bottom: 30px;
+            }
+
+            .hero {
+                height: 100svh;
+            }
+
+            .hero-content {
+                width: 100%;
+                bottom: 0;
+                position: absolute;
+                max-width: 100%;
+                background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
+                border: none;
+                padding-bottom: 80px;
+                text-align: center;
+            }
+
+            .hero-names {
+                font-size: 3.5rem;
+                margin: 10px 0;
+            }
+
+            .hero-date {
+                font-size: 1.1rem;
+                letter-spacing: 3px;
+            }
+
+            .couple-grid,
+            .events-list {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .couple-content {
+                order: 1;
+                text-align: center;
+            }
+
+            .couple-img-box {
+                order: 2;
+            }
+
+            .event-card {
+                padding: 30px 20px;
+            }
+
+            .timer {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 20px;
+                max-width: 300px;
+                margin: 30px auto 0;
+            }
+
+            .timer-num {
+                font-size: 2.5rem;
+            }
+
+            .gallery-grid {
+                display: flex;
+                overflow-x: auto;
+                scroll-snap-type: x mandatory;
+                gap: 10px;
+                padding-bottom: 20px;
+            }
+
+            .gallery-item {
+                min-width: 85vw;
+                height: 60vh;
+                scroll-snap-align: center;
+            }
+
+            .gallery-item.large {
+                width: 85vw;
+                height: 60vh;
+            }
+
+            /* Reset size ảnh lớn trên mobile */
+            .mobile-hint {
+                display: block;
+                text-align: center;
+                font-size: 0.8rem;
+                color: #888;
+                margin-top: 10px;
+            }
+
+            .music-info {
+                display: none;
+            }
         }
 
-        @keyframes spin { 100% { transform: rotate(360deg); } }
-        @keyframes bounce { 0%, 20%, 50%, 80%, 100% {transform: translateY(0);} 40% {transform: translateY(-10px);} 60% {transform: translateY(-5px);} }
+        @keyframes spin {
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes bounce {
+
+            0%,
+            20%,
+            50%,
+            80%,
+            100% {
+                transform: translateY(0);
+            }
+
+            40% {
+                transform: translateY(-10px);
+            }
+
+            60% {
+                transform: translateY(-5px);
+            }
+        }
     </style>
 </head>
+
 <body>
 
     <audio id="bgMusic" loop>
-        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+        <source src="music.mp3" type="audio/mpeg">
     </audio>
-    <div class="music-control" onclick="toggleMusic()" id="musicBtn"><i class="fas fa-music"></i></div>
+
+    <div class="music-control-container">
+        <div class="music-info" id="musicInfo">
+            <span class="music-name">🎵 Ngày Đầu Tiên - Đức Phúc</span>
+        </div>
+        <div class="music-btn" onclick="toggleMusic()" id="musicBtn">
+            <i class="fas fa-music"></i>
+        </div>
+    </div>
 
     <div class="fixed-bg"></div>
 
     <header class="hero">
         <div class="hero-content">
-            <p class="script-text" style="color: #fff; font-size: 1.2rem;">The Wedding of</p>
-            <h1 class="hero-names">Hoàng Kiên <br> <span style="font-size: 0.4em; font-family: var(--font-sans); vertical-align: middle;">&</span> <br> Minh Khánh</h1>
+            <p class="script-text" style="color: #fff;">The Wedding of</p>
+            <h1 class="hero-names">Hoàng Kiên <br> <span
+                    style="font-size: 0.5em; font-family: var(--font-sans); font-style: normal; vertical-align: middle;">&</span>
+                <br> Minh Khánh
+            </h1>
             <div class="hero-date">05 - 06 . 02 . 2026</div>
             <br>
-            <a href="#events" class="btn-luxury" style="border-color: #fff; color: #fff; margin-top: 15px;">Xem Lịch Trình</a>
+            <a href="#events" class="btn-luxury" style="border-color: #fff; color: #fff; margin-top: 20px;">Xem Lịch
+                Trình</a>
         </div>
-        <div class="scroll-down"><i class="fas fa-chevron-down"></i></div>
+        <div style="position: absolute; bottom: 30px; animation: bounce 2s infinite; color: white;">
+            <i class="fas fa-chevron-down"></i>
+        </div>
     </header>
 
     <section class="section-padding">
         <div class="container">
-            <div class="couple-wrapper">
+            <div class="couple-grid">
                 <div class="couple-content reveal">
                     <p class="script-text">Our Story</p>
-                    <h2 class="section-title" style="text-align: left;">Câu chuyện <br>Tình yêu</h2>
-                    <p>Chào mừng bạn đến với website chính thức của chúng mình. Một hành trình dài của yêu thương, thấu hiểu và sẻ chia đã đưa Kiên và Khánh đến với ngày trọng đại này.</p>
+                    <h2>Câu chuyện <br>Tình yêu</h2>
                     <br>
+                    <p>Chào mừng bạn đến với website chính thức của chúng mình. Một hành trình dài của yêu thương, thấu
+                        hiểu và sẻ chia đã đưa Kiên và Khánh đến với ngày trọng đại này.</p>
                     <p>Chúng mình tin rằng, hạnh phúc không phải là đích đến, mà là con đường chúng ta cùng đi.</p>
                     <span class="quote">"Together is a beautiful place to be."</span>
                 </div>
                 <div class="couple-img-box reveal">
-                    <img src="https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?q=80&w=1000&auto=format&fit=crop" class="couple-img" alt="Couple">
+                    <img src="img/Cong2.jpg" class="couple-img" alt="Cô Dâu Chú Rể">
                 </div>
             </div>
         </div>
@@ -243,92 +541,109 @@
 
     <section class="countdown-wrap">
         <div class="container reveal">
-            <p class="script-text" style="color: rgba(255,255,255,0.8); font-size: 1.2rem;">Save the Date</p>
-            <h2 style="color: white; font-size: 2.2rem; margin-bottom: 10px;">Ngày Hạnh Phúc</h2>
+            <p class="script-text" style="color: rgba(255,255,255,0.8)">Save the Date</p>
+            <h2 style="color: white; font-size: 2.5rem; margin-bottom: 20px;">Đếm ngược ngày hạnh phúc</h2>
             <div class="timer" id="timer">
-                <div class="timer-box"><div class="timer-num" id="d">00</div><div class="timer-label">Ngày</div></div>
-                <div class="timer-box"><div class="timer-num" id="h">00</div><div class="timer-label">Giờ</div></div>
-                <div class="timer-box"><div class="timer-num" id="m">00</div><div class="timer-label">Phút</div></div>
-                <div class="timer-box"><div class="timer-num" id="s">00</div><div class="timer-label">Giây</div></div>
+                <div class="timer-box">
+                    <div class="timer-num" id="d">00</div>
+                    <div class="timer-label">Ngày</div>
+                </div>
+                <div class="timer-box">
+                    <div class="timer-num" id="h">00</div>
+                    <div class="timer-label">Giờ</div>
+                </div>
+                <div class="timer-box">
+                    <div class="timer-num" id="m">00</div>
+                    <div class="timer-label">Phút</div>
+                </div>
+                <div class="timer-box">
+                    <div class="timer-num" id="s">00</div>
+                    <div class="timer-label">Giây</div>
+                </div>
             </div>
         </div>
     </section>
 
-    <section id="events" class="section-padding">
+    <section id="events" class="section-padding" style="background: rgba(255,255,255,0.9);">
         <div class="container">
-            <h2 class="section-title reveal">Sự Kiện</h2>
-            
-            <div class="event-card reveal">
-                <h3 class="event-title">Lễ Vu Quy</h3>
-                <p class="event-time">09:00 AM — 05/02/2026</p>
-                <hr style="border: 0; border-top: 1px solid #eee; margin: 15px 0;">
-                <p class="event-loc"><i class="fas fa-map-marker-alt" style="color: var(--accent-color)"></i> Tư gia nhà gái <br> TP. Nam Định</p>
-                <a href="https://www.google.com/maps/search/?api=1&query=TP.+Nam+Định" target="_blank" class="btn-luxury">Xem Bản Đồ</a>
-            </div>
-
-            <div class="event-card reveal">
-                <h3 class="event-title">Tiệc Thành Hôn</h3>
-                <p class="event-time">17:30 PM — 06/02/2026</p>
-                <hr style="border: 0; border-top: 1px solid #eee; margin: 15px 0;">
-                <p class="event-loc"><i class="fas fa-map-marker-alt" style="color: var(--accent-color)"></i> Trung Tâm Hội Nghị <br> Luxury Palace</p>
-                <a href="https://www.google.com/maps/search/?api=1&query=Trung+Tâm+Hội+Nghị" target="_blank" class="btn-luxury">Xem Bản Đồ</a>
+            <h2 class="section-title reveal">Sự Kiện Chính</h2>
+            <div class="events-list">
+                <div class="event-card reveal">
+                    <h3 class="event-title">Lễ Vu Quy</h3>
+                    <p class="event-time">09:00 AM — Thứ Năm, 05/02/2026</p>
+                    <p class="event-loc">Tư gia nhà gái - TP. Nam Định</p>
+                    <hr style="border:0; border-top:1px solid #eee; margin: 20px 0;">
+                    <a href="https://www.google.com/maps/search/?api=1&query=TP.+Nam+Định" target="_blank"
+                        class="btn-luxury">
+                        <i class="fas fa-map-marker-alt"></i> Xem Bản Đồ
+                    </a>
+                </div>
+                <div class="event-card reveal">
+                    <h3 class="event-title">Tiệc Thành Hôn</h3>
+                    <p class="event-time">17:30 PM — Thứ Sáu, 06/02/2026</p>
+                    <p class="event-loc">Trung Tâm Hội Nghị Luxury Palace</p>
+                    <hr style="border:0; border-top:1px solid #eee; margin: 20px 0;">
+                    <a href="https://www.google.com/maps/search/?api=1&query=Trung+Tâm+Hội+Nghị" target="_blank"
+                        class="btn-luxury">
+                        <i class="fas fa-map-marker-alt"></i> Xem Bản Đồ
+                    </a>
+                </div>
             </div>
         </div>
     </section>
 
-    <section class="section-padding" style="background: #fff;">
-        <div class="container" style="width: 100%; max-width: 100%; padding: 0 0 0 20px;">
-            <div style="padding-right: 20px;">
-                <h2 class="section-title reveal">Album Ảnh</h2>
+    <section class="section-padding">
+        <div class="container">
+            <h2 class="section-title reveal">Khoảnh Khắc</h2>
+            <div class="gallery-wrapper reveal">
+                <div class="gallery-grid">
+                    <div class="gallery-item large"><img src="img/Ban1.jpg" loading="lazy"></div>
+
+                    <div class="gallery-item"><img src="img/Ban2.jpg" loading="lazy"></div>
+                    <div class="gallery-item"><img src="img/Ban3.jpg" loading="lazy"></div>
+                    <div class="gallery-item"><img src="img/Ban4.jpg" loading="lazy"></div>
+                    <div class="gallery-item"><img src="img/Ban5.jpg" loading="lazy"></div>
+
+                    <div class="gallery-item large"><img src="img/Ban6.jpg" loading="lazy"></div>
+
+                    <div class="gallery-item"><img src="img/Ban7.jpg" loading="lazy"></div>
+                    <div class="gallery-item"><img src="img/Ban8.jpg" loading="lazy"></div>
+                    <div class="gallery-item"><img src="img/Ban9.jpg" loading="lazy"></div>
+                    <div class="gallery-item"><img src="img/Ban10.jpg" loading="lazy"></div>
+                </div>
+                <p class="mobile-hint"><i class="fas fa-hand-point-up" style="transform: rotate(90deg);"></i> Lướt sang
+                    trái để xem thêm</p>
             </div>
-            
-            <div class="gallery-container reveal">
-                <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1000&auto=format&fit=crop" loading="lazy">
-                </div>
-                <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1511285560982-1356c11d4606?q=80&w=1000&auto=format&fit=crop" loading="lazy">
-                </div>
-                <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?q=80&w=1000&auto=format&fit=crop" loading="lazy">
-                </div>
-                <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1606800052052-a08af7148866?q=80&w=1000&auto=format&fit=crop" loading="lazy">
-                </div>
-            </div>
-            <p class="swipe-hint"><i class="fas fa-hand-point-up" style="transform: rotate(90deg);"></i> Lướt để xem thêm ảnh</p>
         </div>
     </section>
 
     <footer>
         <div class="container">
-            <h2 class="footer-names">K & K</h2>
-            <p style="font-size: 0.8rem; opacity: 0.6;">Thank you for coming!</p>
+            <h2 class="hero-names" style="font-size: 3rem;">H.K & M.K</h2>
+            <p style="font-size: 0.9rem; opacity: 0.7;">Thank you for your love and support.</p>
         </div>
     </footer>
 
     <script>
-        // 1. Reveal on Scroll
+        // Reveal
         window.addEventListener('scroll', reveal);
         function reveal() {
             var reveals = document.querySelectorAll('.reveal');
             for (var i = 0; i < reveals.length; i++) {
                 var windowHeight = window.innerHeight;
                 var elementTop = reveals[i].getBoundingClientRect().top;
-                if (elementTop < windowHeight - 50) {
-                    reveals[i].classList.add('active');
-                }
+                if (elementTop < windowHeight - 50) { reveals[i].classList.add('active'); }
             }
         }
         reveal();
 
-        // 2. Countdown Logic
+        // Countdown (05/02/2026)
         const weddingDate = new Date("Feb 5, 2026 09:00:00").getTime();
-        const x = setInterval(function() {
+        const x = setInterval(function () {
             const now = new Date().getTime();
             const distance = weddingDate - now;
             if (distance < 0) {
-                document.getElementById("timer").innerHTML = "<div class='timer-box' style='grid-column: span 2'><div class='timer-num'>Happy Wedding!</div></div>";
+                document.getElementById("timer").innerHTML = "<div class='timer-box'><div class='timer-num'>Happy</div></div><div class='timer-box'><div class='timer-num'>Wedding</div></div>";
                 clearInterval(x);
                 return;
             }
@@ -338,27 +653,30 @@
             document.getElementById('s').innerText = Math.floor((distance % (1000 * 60)) / 1000);
         }, 1000);
 
-        // 3. Music
+        // Music Player
         let isPlaying = false;
         const bgMusic = document.getElementById("bgMusic");
         const musicBtn = document.getElementById("musicBtn");
+        const musicContainer = document.querySelector(".music-control-container");
+
         function toggleMusic() {
             if (isPlaying) {
                 bgMusic.pause();
-                musicBtn.classList.remove("music-rotating");
+                musicBtn.classList.remove("playing");
+                musicContainer.classList.remove("is-playing");
                 musicBtn.innerHTML = '<i class="fas fa-music"></i>';
             } else {
                 bgMusic.play();
-                musicBtn.classList.add("music-rotating");
-                musicBtn.innerHTML = '<i class="fas fa-pause"></i>';
+                musicBtn.classList.add("playing");
+                musicContainer.classList.add("is-playing");
+                musicBtn.innerHTML = '<i class="fas fa-compact-disc"></i>';
             }
             isPlaying = !isPlaying;
         }
-        
-        // Auto play trick (User touch anywhere)
-        document.body.addEventListener('click', function() {
+        document.body.addEventListener('click', function () {
             if (!isPlaying) toggleMusic();
         }, { once: true });
     </script>
 </body>
+
 </html>
